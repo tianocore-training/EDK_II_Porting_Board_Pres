@@ -55,7 +55,7 @@ Note:
 ---?image=/assets/images/slides/Slide3.JPG
 @title[Open Source Porting Guide]
 ### <p align="right"><span class="gold" >Open Source Porting Guide</span></p>
-<p style="line-height:80%"><span style="font-size:0.9em" >Porting Guide for a new board with the Intel Atom® Processor E3900 Series Platforms (formerly Apollo Lake) Platform <br>
+<p style="line-height:80%"><span style="font-size:0.8em" >Porting Guide for a new board with the Intel Atom® Processor E3900 Series Platforms (formerly Apollo Lake) Platform <br>
 Download <a href="https://firmware.intel.com/sites/default/files/uefi_firmware_porting_guide_for_the_intel_atom_processor_e3900_series.pdf">PDF </a> </span></p>
 
 Note:
@@ -64,7 +64,7 @@ Note:
 ---?image=assets/images/binary-strings-black2.jpg
 @title[Copy Existing Board Section]
 <br><br><br><br><br><br><br>
-### <span class="gold"  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copy Existing Boar </span>
+### <span class="gold"  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copy Existing Board </span>
 <span style="font-size:0.9em" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clone existing Board from a current project</span>
 
 ---
@@ -89,10 +89,12 @@ Note:
 <li><span style="font-size:0.8em" >Many platforms with minor variations can share common code </span></li>
 <li><span style="font-size:0.8em" >Board definitions are under the “Board” directory: </span></li>
 </ul>
+
 ```
    edk2-platforms\Platform\BroxtonPlatformPkg\Board
 
 ```
+
 <p style="line-height:80%"><span style="font-size:0.8em" >Developers can clone the reference project by copying the directory, renaming the directory, and adding references in several configuration files.  </span></p>
 
 
@@ -119,12 +121,14 @@ Note:
 <ul style="list-style-type:none">
   <li><span style="font-size:0.8em" >Functions and global variables of libraries under the NewBoard folder need to be changed so they do not conflict with libraries of existing boards. These are referenced in .INF files copied from the reference project: </span></li>
 </ul>
-```
-BoardInitPreMem.inf
-BoardInitPostMem.inf
-BoardInitDxe.inf
 
 ```
+ BoardInitPreMem.inf
+ BoardInitPostMem.inf
+ BoardInitDxe.inf
+
+```
+
 <ul style="list-style-type:none">
 <li><span style="font-size:0.8em" >UEFI and EDK II associate a globally unique identifier (GUID) with various functions, files, and protocols.  </span></li>
 <li><span style="font-size:0.8em" >New file GUIDs must also be generated for .INF files under the NewBoard folder to avoid conflict with GUIDs from existing projects. </span></li>
@@ -137,19 +141,22 @@ Note:
 ---
 @title[Copy Existing Board Dir as a Reference]
 <p align="right"><span class="gold" ><b>Copy Existing Board Dir as a Reference</b></span></p>
+<br>
 <ul style="list-style-type:none">
- <li><span style="font-size:0.8em" >Add Components to DSC File –  </span></li>
+ <li><span style="font-size:0.9em" ><b>Add Components to DSC File –  </b></span></li>
    <ul style="list-style-type:none">
      <li><span style="font-size:0.8em" >Add DXE Library </span></li>
      <li><span style="font-size:0.8em" >Add PEI Libraries </span></li>
    </ul>
- <li><span style="font-size:0.8em" >Paths to Binary Stitching Files - Modify the post-build stitch file </span></li>
+ <li><span style="font-size:0.9em" ><b>Paths to Binary Stitching Files - Modify the post-build stitch file </b></span></li>
    <ul style="list-style-type:none">
      <li><span style="font-size:0.8em" >Windows – `IFWIStitch_Simple.bat` </span></li>
      <li><span style="font-size:0.8em" >Linux – `edk2-platforms\BuildBIOS.sh` </span></li>
    </ul>
 </ul>
-<span style="font-size:0.9em" ><b>Build and Test with the NEW Board </b> </span>
+<br>
+<br>
+<span style="font-size:01.0em" ><b>Build and Test with the NEW Board </b> </span>
 
 
 Note:
@@ -167,20 +174,21 @@ Note:
 <p style="line-height:80%"><span style="font-size:0.8em" >The next step is editing the cloned project based on the board configuration.  </span></p>
 <p style="line-height:80%"><span style="font-size:0.8em" >Update required UEFI IA Firmware changes for custom platforms that vary from a reference hardware design. </span></p>
 
-<ol style="line-height:0.7;" >
-<li><span style="font-size:0.7em" >Detection of Board ID & Fab ID </span></li>
-<li><span style="font-size:0.7em" >Change UART serial port for UEFI IA Firmware debug messages </span></li>
-<li><span style="font-size:0.7em" >Change system memory parameters </span></li>
-<li><span style="font-size:0.7em" >Change display devices, peripherals </span></li>
-<li><span style="font-size:0.7em" >Modify I/O & GPIO configuration </span></li>
-<li><span style="font-size:0.7em" >Microcode updates </span></li>
-</ol>
+<ul style="line-height:0.8;" style="list-style-type:none">
+<li><span style="font-size:0.7em" >1. Detection of Board ID & Fab ID </span></li>
+<li><span style="font-size:0.7em" >2. Change UART serial port for UEFI IA Firmware debug messages </span></li>
+<li><span style="font-size:0.7em" >3. Change system memory parameters </span></li>
+<li><span style="font-size:0.7em" >4. Change display devices, peripherals </span></li>
+<li><span style="font-size:0.7em" >5. Modify I/O & GPIO configuration </span></li>
+<li><span style="font-size:0.7em" >6. Microcode updates </span></li>
+</ul>
 
 Note:
 
 ---?image=/assets/images/slides/Slide12.JPG
 @title[Hardware-Related Changes ACPI]
 <p align="right"><span class="gold" ><b>Hardware-Related Changes - ACPI</b></span></p>
+<br>
 <p style="line-height:80%"><span style="font-size:0.9em" ><b>Add & Remove Peripherals in ACPI SSDT </b> </span></p>
 <ul style="list-style-type:none">
  <li><span style="font-size:0.8em" >Add New Peripherals – New Board .ASL file</span></li>
@@ -216,10 +224,10 @@ Note:
 ---?image=/assets/images/slides/Slide15.JPG
 @title[Other Platform Configuration]
 <p align="right"><span class="gold" ><b>Other Platform Configuration</b></span></p>
-<div class="left1">
+<div class="left2">
 <ul style="line-height:0.8;">
    <li><span style="font-size:0.7em" >Intel® FSP Configuration –  </span></li>
-   <ul style="line-height:0.7;" style="list-style-type:none">
+   <ul style="list-style-type:none">
       <li><span style="font-size:0.6em" >Using Intel BCT to Configure Intel FSP Parameters </span></li>
       <li><span style="font-size:0.6em" >Using UPD to Override Intel FSP Parameters </span></li>
   </ul>
@@ -231,7 +239,7 @@ Note:
   <li><span style="font-size:0.7em" >Signed Capsule Update </span></li>
   <li><span style="font-size:0.7em" >Enabling Verified Boot </span></li>
   <li><span style="font-size:0.7em" >Trusted Platform Module (TPM) </span></li>
-  <li><span style="font-size:0.7em" >UEFI Secure Boo </span></li>
+  <li><span style="font-size:0.7em" >UEFI Secure Boot </span></li>
   <li><span style="font-size:0.7em" >UEFI Networking </span></li>
  </ul>
 </div>
