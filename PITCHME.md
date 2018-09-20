@@ -89,12 +89,12 @@ Note:
 <li><span style="font-size:0.8em" >Many platforms with minor variations can share common code </span></li>
 <li><span style="font-size:0.8em" >Board definitions are under the “Board” directory: </span></li>
 </ul>
+<pre>
+```
+   edk2-platforms/Platform/BroxtonPlatformPkg/Board
 
 ```
-   edk2-platforms\Platform\BroxtonPlatformPkg\Board
-
-```
-
+</pre>
 <p style="line-height:80%"><span style="font-size:0.8em" >Developers can clone the reference project by copying the directory, renaming the directory, and adding references in several configuration files.  </span></p>
 
 
@@ -174,7 +174,7 @@ Note:
 <p style="line-height:80%"><span style="font-size:0.8em" >The next step is editing the cloned project based on the board configuration.  </span></p>
 <p style="line-height:80%"><span style="font-size:0.8em" >Update required UEFI IA Firmware changes for custom platforms that vary from a reference hardware design. </span></p>
 
-<ul style="line-height:0.8;" style="list-style-type:none">
+<ul style="line-height:0.8;"; style="list-style-type:none">
 <li><span style="font-size:0.7em" >1. Detection of Board ID & Fab ID </span></li>
 <li><span style="font-size:0.7em" >2. Change UART serial port for UEFI IA Firmware debug messages </span></li>
 <li><span style="font-size:0.7em" >3. Change system memory parameters </span></li>
