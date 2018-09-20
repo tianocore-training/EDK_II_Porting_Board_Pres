@@ -174,7 +174,8 @@ Note:
 <p style="line-height:80%"><span style="font-size:0.8em" >The next step is editing the cloned project based on the board configuration.  </span></p>
 <p style="line-height:80%"><span style="font-size:0.8em" >Update required UEFI IA Firmware changes for custom platforms that vary from a reference hardware design. </span></p>
 
-<ul style="line-height:0.8;"; style="list-style-type:none">
+
+<ul style="list-style-type:none" style="line-height:0.7;">
 <li><span style="font-size:0.7em" >1. Detection of Board ID & Fab ID </span></li>
 <li><span style="font-size:0.7em" >2. Change UART serial port for UEFI IA Firmware debug messages </span></li>
 <li><span style="font-size:0.7em" >3. Change system memory parameters </span></li>
