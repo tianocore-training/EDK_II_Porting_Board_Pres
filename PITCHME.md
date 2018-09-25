@@ -250,8 +250,52 @@ Note:
 
 Note:
 
+--- 
+@title[Example: Custom Boot Logo]
+<p align="right"><span class="gold" ><b>Example: Custom Boot Logo</b></span></p>
 
+<p style="line-height:80%"><span style="font-size:0.9em" >1.Create a new Directory for the Logo BMP  </span></p>
+
+```
+  edk2-platforms\Platform\BroxtonPlatformPkg\Board\NewBoard\Logo
+
+```
+
+<p style="line-height:80%"><span style="font-size:0.9em" >2.Create a new GUID For the new Logo</span></p>
+
+```
+ gPeiNewBoardLogoGuid =     { 0x02c2a0ef, 0x98ba, 0x417a, { 0x96, 0xb1, 0x57, 0x2f, 0x80, 0x16, 0x4c, 0x5c } }
+ 
+```
   
+<p style="line-height:80%"><span style="font-size:0.9em" >3. Add the reference to the bin logo to the board .fdf file  </span></p>
+```
+ FILE FREEFORM = PCD(gEfiIntelFrameworkModulePkgTokenSpaceGuid.gPeiNewBoardLogoGuid) {
+  SECTION RAW = $(PLATFORM_NAME)/Board/NewBoard/Logo/Logo.bmp
+ }
+
+```
+
+<p style="line-height:80%"><span style="font-size:0.9em" >4. Add the reference to the source code: `NewBoard\BoardInitPostMem\BoardInit.c`  </span></p>
+```
+  // Board specific Logo
+  //
+  BufferSize = sizeof (EFI_GUID);
+  PcdSetPtr(PcdOemLogoFileGuid, &BufferSize, (UINT8 *)& gPeiNewBoardLogoGuid);
+
+```
+
+
+
+
+Note:
+A small boot logo can be displayed in the center of the screen, prior to the OS loading. Images are in BMP format (24 bit, maximum resolution 208 x 131). 
+Due to module space limit, the BMP size cannot exceed 79K. A default logo is included that is common to all boards in the firmware project:
+
+Rather than overwriting the existing logo, it is recommended to create a new logo that is stored under the board folder:
+
+
+
 ---  
 @title[Summary]
 <BR>
