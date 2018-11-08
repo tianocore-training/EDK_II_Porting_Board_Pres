@@ -32,4 +32,4 @@
 # EDK_II_Porting_Board_pres
 Porting a New Board based on a Leaf Hill CRB (Apollo Lake) reference board
 
-To see the Slides goto https://gitpitch.com/Laurie0131/EDK_II_Porting_Board_pres/master#/
+To see the Slides goto https://gitpitch.com/tianocore-training/EDK_II_Porting_Board_pres/master#/
